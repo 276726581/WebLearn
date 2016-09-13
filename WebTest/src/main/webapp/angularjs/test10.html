@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="app">
+<head>
+    <meta charset="UTF-8">
+    <title>指令4-数据绑定</title>
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap-theme.min.css">
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="js/angular.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <style type="text/css">
+        .container {
+            padding: 5px;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>指令2-数据绑定</h1>
+    <h2>@: 把当前属性作为字符串传递。你还可以绑定来自外层的scope的值，在属性值中插入{{}}即可</h2>
+    <h2>=: 与父scope中的属性进行双向绑定</h2>
+    <h2>&: 传递一个来自父scope的函数，稍后调用</h2>
+    <hr>
+    <div ng-controller="ctrl1">
+        <div>@:使用</div>
+        <textbox content="{{msg}}"></textbox>
+    </div>
+    <br>
+    <div ng-controller="ctrl2">
+        <div>=:使用</div>
+        <input type="text" ng-model="text">
+        <inputbox content="text"></inputbox>
+    </div>
+    <br>
+    <div ng-controller="ctrl3">
+        <div>&:使用</div>
+        <message show="getMessage(msg)"></message>
+        <button ng-click="getMessage('test')">Test</button>
+    </div>
+</div>
+</body>
+<script type="text/javascript">
+    var app = angular.module("app", []);
+    app.controller("ctrl1", function ($scope) {
+        $scope.msg = "Hello World";
+    });
+    app.directive("textbox", function () {
+        return {
+            restrict: "AE",
+            template: "<h2>你好, {{content}}</h2>",
+//            link: function ($scope, $element, $attr) {
+//                $scope.content = $attr.content;
+//            }
+//            或
+            scope: {
+                content: "@"
+            }
+        };
+    });
+
+    //**********************************************************************
+
+    app.controller("ctrl2", function ($scope) {
+        $scope.msg = "Hello World";
+    });
+    app.directive("inputbox", function () {
+        return {
+            restrict: "AE",
+            template: "<input type='text' ng-model='content'/>",
+            scope: {
+                content: "="
+            }
+        };
+    });
+
+    //**********************************************************************
+
+    app.controller("ctrl3", function ($scope) {
+        $scope.getMessage = function (msg) {
+            alert(msg);
+        };
+    });
+    app.directive("message", function () {
+        return {
+            restrict: "AE",
+            template: "<input type='text' ng-model='text'><button ng-click='show({msg:text})'>Button</button>",
+            scope: {
+                show: "&"
+            }
+        };
+    });
+</script>
+</html>

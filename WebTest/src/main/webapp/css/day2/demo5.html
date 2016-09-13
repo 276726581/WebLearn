@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>CSS层叠性</title>
+
+    <!-- CSS层叠性是在优先性相同时才考虑 -->
+    <style type="text/css">
+        .v {
+            width: 500px;
+            height: 300px;
+            color: white;
+        }
+
+        .d {
+            background-color: red;
+        }
+
+        .d {
+            background-color: green;
+        }
+
+        .d {
+            background-color: orangered;
+        }
+    </style>
+</head>
+<body>
+<!-- class以空格分割多个名字 -->
+<div class="d v">
+    div的背景颜色会被覆盖
+</div>
+</body>
+</html>

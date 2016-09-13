@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>CSS字体</title>
+    <style type="text/css">
+        span {
+            font-size: 26px;
+        }
+
+        #s1 {
+            font-family: Arial;
+        }
+
+        #s2 {
+            font-family: Verdana;
+        }
+
+        #s3 {
+            font-family: 宋体, Arial;
+        }
+
+        #s4 {
+            font-family: 微软雅黑;
+        }
+
+        #s5 {
+            font-family: 宋体;
+        }
+
+        #s6 {
+            font-family: 黑体;
+        }
+
+        #s7 {
+            /* 正常 */
+            font-weight: normal;
+            font-family: 微软雅黑;
+        }
+
+        #s8 {
+            /* 加粗 */
+            font-weight: bold;
+            font-family: 微软雅黑;
+        }
+
+        #s9 {
+            /* 变细 */
+            font-weight: lighter;
+            font-family: 微软雅黑;
+        }
+
+        #s10 {
+            font-style: normal;
+        }
+
+        #s11 {
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+<div>
+    <!--
+     1. 各种字体之间以逗号额开，如果浏览器不支持第一个，会尝试下一个
+     2. 如果字体名中包含空格、#、$等符号，必须加双引号
+     -->
+    <span id="s1">Arial</span>
+    <span id="s2">Verdana</span>
+    <span id="s3">span3</span>
+    <span id="s4">宋体</span>
+    <span id="s5">微软雅黑</span>
+    <span id="s6">黑体</span>
+    <br>
+    <span id="s7">字体正常</span>
+    <span id="s8">字体加粗</span>
+    <span id="s9">字体变细</span>
+    <br>
+    <span id="s10">字体正常</span>
+    <span id="s11">字体斜体</span>
+</div>
+</body>
+</html>

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="app">
+<head>
+    <meta charset="UTF-8">
+    <title>指令2-link方法-SuperMan</title>
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap-theme.min.css">
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="js/angular.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <style type="text/css">
+        .container {
+            padding: 5px;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>指令2-link方法-SuperMan</h1>
+    <div class="row">
+        <div class="col-md-3">
+            <superman strength>
+                <button>SuperMan1</button>
+            </superman>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-3">
+            <superman strength speed>
+                <button>SuperMan2</button>
+            </superman>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-3">
+            <superman strength speed light>
+                <button>SuperMan3</button>
+            </superman>
+        </div>
+    </div>
+</div>
+</body>
+<script type="text/javascript">
+    var app = angular.module("app", []);
+    app.directive("superman", function () {
+        return {
+            scope: {},
+            restrict: "AE",
+            controller: function ($scope) {
+                $scope.abilities = [];
+                this.addStrength = function () {
+                    $scope.abilities.push("strength");
+                };
+                this.addSpeed = function () {
+                    $scope.abilities.push("speed");
+                };
+                this.addLight = function () {
+                    $scope.abilities.push("light");
+                };
+            },
+            link: function ($scope, $element, $attr) {
+                $element.addClass("btn");
+                $element.bind("click", function () {
+                    console.log($scope.abilities);
+                });
+            }
+        }
+    });
+    app.directive("strength", function () {
+        return {
+            require: "^superman",
+            link: function ($scope, $element, $attr, $controller) {
+                $controller.addStrength();
+            }
+        };
+    });
+    app.directive("speed", function () {
+        return {
+            require: "^superman",
+            link: function ($scope, $element, $attr, $controller) {
+                $controller.addSpeed();
+            }
+        };
+    });
+    app.directive("light", function () {
+        return {
+            require: "^superman",
+            link: function ($scope, $element, $attr, $controller) {
+                $controller.addLight();
+            }
+        };
+    });
+</script>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="app">
+<head>
+    <meta charset="UTF-8">
+    <title>指令3-独立scope</title>
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap-theme.min.css">
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="js/angular.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <style type="text/css">
+        .container {
+            padding: 5px;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>指令2-独立scope</h1>
+    <div class="panel">
+        <cmd1></cmd1>
+        <cmd1></cmd1>
+        <cmd1></cmd1>
+    </div>
+    <div class="panel">
+        <div>使用独立scope</div>
+        <cmd2></cmd2>
+        <cmd2></cmd2>
+        <cmd2></cmd2>
+    </div>
+</div>
+</body>
+<script type="text/javascript">
+    var app = angular.module("app", []);
+    app.directive("cmd1", function () {
+        return {
+            restrict: "E",
+            template: "<div><input type='text' ng-model='content'><span ng-cloak>{{content}}</span></div>",
+            replace: true
+        };
+    });
+    app.directive("cmd2", function () {
+        return {
+            //独立scope
+            scope: {},
+            restrict: "E",
+            template: "<div><input type='text' ng-model='content'><span ng-cloak>{{content}}</span></div>",
+            replace: true
+        };
+    });
+</script>
+</html>

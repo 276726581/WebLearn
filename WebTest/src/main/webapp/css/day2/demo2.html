@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon"/>
+    <title>CSS选择器</title>
+
+    <style type="text/css">
+        /* 标签选择器 */
+        h1 {
+            font-size: 34px;
+            color: red;
+        }
+
+        /* id选择器 */
+        #desc {
+            color: green;
+        }
+
+        /* 类选择器 */
+        .sp {
+            background-color: black;
+            width: 200px;
+            height: 100px;
+        }
+
+        /* id选择器
+        规范: 只允许出现字母(区分大小写)、下划线、数字。
+        注意: 不可以出现标签名
+         */
+        .address {
+            color: green;
+        }
+    </style>
+</head>
+<body>
+
+<!--
+    class和id的区别:
+    同一个页面中class属性相同的值可以又多个，id属性的值是唯一的。
+-->
+<div>
+    <h1>CSS标题</h1>
+    <p id="desc">CSS段落</p>
+    <div class="sp">CSS节</div>
+</div>
+
+<div>
+    <ul>
+        <li>
+            南京
+            <br>
+            <ul>
+                <li class="address">江宁</li>
+                <li class="address">玄武</li>
+                <li class="address">鼓楼</li>
+            </ul>
+        </li>
+        <li>
+            上海
+            <br>
+            <ul>
+                <li class="address">徐汇</li>
+                <li class="address">黄埔</li>
+                <li class="address">松江</li>
+            </ul>
+        </li>
+        <li>北京</li>
+        <li>广东</li>
+        <li>江西</li>
+    </ul>
+</div>
+
+<hr>
+
+<!-- 标签指定式选择器 -->
+<style type="text/css">
+    span.text {
+        color: red;
+    }
+</style>
+<div>
+    <span class="text">文本1</span>
+    <span>文本2</span>
+</div>
+
+<hr>
+
+<!-- 后代选择器 -->
+<style type="text/css">
+    div a {
+        color: green;
+    }
+</style>
+<div>
+    <a href="#">文本</a>
+</div>
+
+<hr>
+
+<!-- 并集选择器 -->
+<style type="text/css">
+    .c1, .c2 {
+        color: brown;
+    }
+</style>
+<div>
+    <span class="c1">节</span>
+    <span class="c2">行</span>
+</div>
+
+<hr>
+
+<!-- 子元素选择器(子代选择器 只能选择儿子，不能选择孙子) -->
+<style type="text/css">
+    div > h3 {
+        color: chocolate;
+    }
+</style>
+<div>
+    <h3>标题1</h3>
+    <span>
+        <h3>标题2</h3>
+    </span>
+</div>
+
+<hr>
+
+<!-- 属性选择器 -->
+<style type="text/css">
+    a[id] {
+        color: orange;
+    }
+
+    span[id] {
+        color: yellow;
+    }
+
+    /* type="button"同时value="button" */
+    input[type="button"][value="button"] {
+        color: red;
+        background-color: green;
+        border: 0px;
+        border-radius: 0px;
+    }
+
+    input[type="text"] {
+        background-color: gray;
+        border: 0px;
+    }
+</style>
+<div>
+    <a id="property1">链接</a>
+    <span id="property2">节</span>
+    <input type="button" value="button">
+    <input type="text">
+    <input type="password">
+</div>
+</body>
+</html>

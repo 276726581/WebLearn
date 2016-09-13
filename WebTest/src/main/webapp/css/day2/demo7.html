@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>CSS优先级</title>
+
+    <!-- 结论1: 继承的样式要大于默认的样式 -->
+    <!-- 结论2: 通配符选择器样式的优先级比继承样式的优先级要高 -->
+    <!-- 结论3: 标签选择器样式的优先级比通配符选择器的优先级要高 -->
+    <!-- 结论4: 类选择器样式的优先级比标签选择器的优先级要高 -->
+    <!-- 结论5: id选择器样式的优先级比类选择器的优先级要高 -->
+    <!-- 结论6: 行内选择器的优先级比id选择器的优先级要高 -->
+    <!--
+        即:
+        默认样式 < 通配符选择器样式 < 标签选择器样式 < 类选择器样式 < id选择器样式 < 行内选择器
+    -->
+
+    <style type="text/css">
+        body {
+            color: red;
+        }
+
+        span * {
+            color: green;
+        }
+
+        h4 {
+            color: pink;
+        }
+
+        .cls {
+            color: orange;
+        }
+
+        #i {
+            color: aqua;
+        }
+    </style>
+</head>
+<body>
+<div>
+    <h1>H1</h1>
+    <span>
+        <h2>H2</h2>
+        <h3 style="color: fuchsia">H3</h3>
+    </span>
+    <h4>H4</h4>
+    <h5 class="cls">H5</h5>
+    <h6 id="i">H6</h6>
+</div>
+</body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>伪类</title>
+    <style type="text/css">
+        /* LoVe HAte 原则
+                         L:link
+                         V:visited
+                         H:hover
+                         a:active
+         */
+
+        /* 未访问过 */
+        a:link {
+            color: orangered;
+        }
+
+        /* 访问过 */
+        a:visited {
+            color: pink;
+        }
+
+        /* 鼠标悬停 */
+        a:hover {
+            color: green;
+        }
+
+        /* 鼠标按下 */
+        a:active {
+            background-color: black;
+        }
+
+        input.text:focus {
+            border-color: red;
+        }
+    </style>
+</head>
+<body>
+<div>
+    <a href="http://www.baidu.com">百度</a>
+    <a href="http://www.youku.com">优酷</a>
+    <a href="http://www.tudou.com">土豆</a>
+    <a href="http://www.taobao.com">淘宝</a>
+    <input type="text" class="text">
+</div>
+</body>
+</html>

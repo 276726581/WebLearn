@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="app">
+<head>
+    <meta charset="UTF-8">
+    <title>指令1-restrict-匹配模式2</title>
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap-theme.min.css">
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="js/angular.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <style type="text/css">
+        .container {
+            padding: 5px;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>指令1-restrict-匹配模式2</h1>
+    <h2>TemplateCache使用:</h2>
+    <title1></title1>
+    <hr/>
+    <h2>Transclude:</h2>
+    <h2>
+        <title2>Hello World</title2>
+    </h2>
+</div>
+</body>
+<script type="text/javascript">
+    var app = angular.module("app", []);
+    //  注射器即在完成时，执行此方法一次(只运行一次)
+    app.run(function ($templateCache) {
+        $templateCache.put("title", "<h1>Hello World</h1>");
+    });
+    app.directive("title1", function ($templateCache) {
+        return {
+            restrict: "E",
+            template: $templateCache.get("title"),
+            replace: true
+        }
+    });
+
+//    ***********************************************************************************
+
+    app.directive("title2", function () {
+        return {
+            restrict: "E",
+            //把<title2>Hello World</title2>中Hello World放到有ng-transclude的属性的元素里
+            template: "标题:&nbsp;<span ng-transclude></span>",
+            //设置transclude: true
+            transclude: true
+        }
+    });
+</script>
+</html>

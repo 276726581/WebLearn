@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div>
+    <!-- 表单 -->
+    <!-- action 请求后端的地址 -->
+    <form action="#" method="get">
+        <!-- name为key -->
+        用户名: <input type="text" name="username">
+        <br>
+
+        密&nbsp;码: <input type="password" name="password">
+        <br>
+
+        <!-- 单选框 -->
+        <!-- radio的name相同为一组 -->
+        <!-- checked="checked"默认选中 -->
+        性&nbsp;别:
+        男<input type="radio" checked="checked" name="gender">
+        女<input type="radio" name="gender">
+        <br>
+
+        <!-- 复选框 -->
+        <input type="checkbox" checked="checked">
+        <input type="checkbox">
+        <input type="checkbox" checked="checked">
+        <input type="checkbox">
+        <br>
+
+        <!-- 下拉列表 -->
+        城&nbsp;市:
+        <select name="city">
+            <option value="1">北京</option>
+            <option value="2">上海</option>
+            <option value="3">南京</option>
+        </select>
+        <br>
+
+        <!-- 普通列表 -->
+        爱&nbsp;好: <br>
+        <select name="hobby" multiple="multiple">
+            <option value="1">旅游</option>
+            <option value="2">购物</option>
+            <option value="3">足球</option>
+        </select>
+        <br>
+
+        <!-- 文本域 -->
+        个人简介: <br>
+        <textarea cols="20" rows="10" name="profile"></textarea>
+        <br>
+        <input type="submit" value="注册">
+    </form>
+</div>
+</body>
+</html>

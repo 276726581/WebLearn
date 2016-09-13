@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>CSS显示方式</title>
+    <style type="text/css">
+        * {
+            color: white;
+            padding: 10px;
+            margin: 10px;
+        }
+
+        .d {
+            display: inline;
+            background-color: red;
+        }
+
+        .s {
+            display: block;
+            background-color: green;
+        }
+
+        .hide {
+            background-color: black;
+
+            /* 直接移除，不保留位置 */
+            display: none;
+        }
+
+        a {
+            /* 只是不显示，保留原来的位置 */
+            visibility: hidden;
+        }
+
+        .list {
+            list-style: none;
+        }
+
+        .list li {
+            color: black;
+        }
+    </style>
+</head>
+<body>
+<!--
+    display
+            none: 此元素不被显示
+            inline: 此元素按内联元素显示
+            block: 此元素按块级元素显示
+            inline-block: 此元素按行内元素显示
+ -->
+
+<a href="#">隐藏</a>
+<div class="d">
+    div
+</div>
+<div class="hide">hide</div>
+<span class="s">
+    span
+</span>
+<div>
+    <ul class="list">
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+        <li>5</li>
+    </ul>
+</div>
+</body>
+</html>

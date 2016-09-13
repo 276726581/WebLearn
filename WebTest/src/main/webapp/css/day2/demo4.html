@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>伪元素</title>
+    <style type="text/css">
+        /* 首行 */
+        #p1:first-line {
+            color: red;
+        }
+
+        /* 首字 */
+        #p2:first-letter {
+            color: green;
+            font-size: 26px;
+        }
+
+        /* 首个元素 */
+        span:first-child {
+            color: #ff7d2d;
+            font-size: 24px;
+        }
+
+        div .text:before, div .text:after {
+            content: "-------------";
+
+            /* 显示方式:块级元素 */
+            display: block;
+        }
+    </style>
+</head>
+<body>
+<div>
+    <p id="p1">成千上万只蜘蛛蟹海底迁徙，<br>密密麻麻好壮观</p>
+    <p id="p2">成千上万只蜘蛛蟹海底迁徙，<br>密密麻麻好壮观</p>
+    <div>
+        <span>span1</span>
+        <span>span2</span>
+        <span>span3</span>
+        <span>span4</span>
+    </div>
+
+    <hr>
+
+    <div>
+        <div>头部</div>
+        <span class="text">内容</span>
+        <div>尾部</div>
+    </div>
+</div>
+</body>
+</html>

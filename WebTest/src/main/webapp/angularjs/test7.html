@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="app">
+<head>
+    <meta charset="UTF-8">
+    <title>指令2-link方法</title>
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap-theme.min.css">
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="js/angular.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <style type="text/css">
+        .container {
+            padding: 5px;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>指令2-link方法</h1>
+    <div ng-controller="ctrl">
+        <loading>
+            <button disabled>{{msg}}</button>
+        </loading>
+    </div>
+    <div ng-controller="controller1">
+        <loading execFunc="loading1()">
+            <button>{{msg}}</button>
+        </loading>
+    </div>
+    <div ng-controller="controller2">
+        <loading execFunc="loading2()">
+            <button>{{msg}}</button>
+        </loading>
+    </div>
+</div>
+</body>
+<script type="text/javascript">
+    var app = angular.module("app", []);
+    app.controller("ctrl", function ($scope) {
+        $scope.msg = "点击加载数据";
+        $scope.loading = function () {
+            console.log("数据加载中");
+        };
+    });
+    app.controller("controller1", function ($scope) {
+        $scope.msg = "点击加载数据";
+        $scope.loading1 = function () {
+            console.log("数据加载中111");
+        };
+    });
+    app.controller("controller2", function ($scope) {
+        $scope.msg = "点击加载数据";
+        $scope.loading2 = function () {
+            console.log("数据加载中222");
+        };
+    });
+    app.directive("loading", function () {
+        return {
+            restrict: "E",
+            link: function ($scope, $element, $attr) {
+                $element.bind("click", function () {
+                    //$scope.loading();
+                    //或
+                    //$scope.$apply("loading()");
+
+                    //注意: loading execFunc=""元素中是驼峰命名,在javascript中全是小写
+                    $scope.$apply($attr.execfunc);
+                });
+            }
+        }
+    });
+</script>
+</html>

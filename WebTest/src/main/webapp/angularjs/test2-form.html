@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="signIn">
+<head>
+    <meta charset="UTF-8">
+    <title>双向数据绑定</title>
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap-theme.min.css">
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="js/angular.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <style type="text/css">
+        .container {
+            padding: 5px;
+            width: 100%;
+        }
+
+        .btn {
+            border-radius: 0px;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="panel panel-primary" ng-controller="signInController">
+        <div class="panel-heading">
+            <div class="panel-title">双向数据绑定</div>
+        </div>
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-md-12">
+                    <form role="form" class="form-horizontal" action="#">
+                        <div class="form-group">
+                            <label class="col-md-2 control-label">UserName</label>
+                            <div class="col-md-10">
+                                <input class="form-control" type="text" name="username" ng-model="userInfo.username">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-2 control-label">PassWord</label>
+                            <div class="col-md-10">
+                                <input class="form-control" type="password" name="password"
+                                       ng-model="userInfo.password">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-offset-2 col-md-2">
+                                <label class="control-label">
+                                    <input type="checkbox" name="auto" ng-model="userInfo.auto">&nbsp;自动登录
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-offset-2 col-md-10">
+                                <div class="btn-group">
+                                    <button class="btn btn-default" type="button" ng-click="resetFormData()">
+                                        重置
+                                    </button>
+                                    <button class="btn btn-default" type="button" ng-click="setFormData()">
+                                        设置表单数据
+                                    </button>
+                                    <button class="btn btn-default" type="button" ng-click="getFromData()">
+                                        获取表单数据
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+<script type="text/javascript">
+    var app = angular.module("signIn", []);
+    app.controller("signInController", function ($scope) {
+        $scope.getFromData = function () {
+            console.log($scope.userInfo);
+        };
+        $scope.setFormData = function () {
+            $scope.userInfo = {
+                username: "admin",
+                password: "admin",
+                auto: true
+            };
+        };
+        $scope.resetFormData = function () {
+            $scope.userInfo = {
+                username: "",
+                password: ""
+            };
+        };
+    });
+</script>
+</html>

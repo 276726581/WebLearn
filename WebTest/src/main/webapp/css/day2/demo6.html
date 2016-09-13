@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>CSS继承性</title>
+    <style type="text/css">
+        /* 当给父元素设置样式的时候,子元素会收到父元素的影响 */
+        /* 文字相关的属性都可以被继承 */
+        /* 盒子相关的属性不会被继承 */
+        div {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+<div>
+    <span>span1</span>
+    <div>div1</div>
+    <em>em1</em>
+</div>
+</body>
+</html>

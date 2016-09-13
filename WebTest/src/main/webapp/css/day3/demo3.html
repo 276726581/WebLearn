@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>CSS字符间距</title>
+    <style type="text/css">
+        #p1 {
+            letter-spacing: 10px;
+        }
+
+        #p2 {
+            /* 只对英文单词起作用，对中文和字母没有影响 */
+            /* 如果中文之间有空格的话，会受影响 */
+            word-spacing: 50px;
+        }
+
+        a {
+            /* 行高 */
+            line-height: 50px;
+
+            /* 左右居中 */
+            text-align: center;
+
+            /* 去掉超链接下划线 */
+            text-decoration: none;
+
+            display: block;
+            width: 300px;
+            height: 50px;
+            background-color: gray;
+            color: black;
+            font-size: 26px;
+        }
+
+        a:hover {
+            color: white;
+        }
+    </style>
+</head>
+<body>
+<p id="p1">CSS字符间距</p>
+<p id="p2">hello world 字符 间距</p>
+<a href="http://www.baidu.com">百度一下</a>
+</body>
+</html>

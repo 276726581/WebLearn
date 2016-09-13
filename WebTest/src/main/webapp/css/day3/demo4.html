@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>文本的装饰</title>
+    <style type="text/css">
+        * {
+            font-size: 26px;
+        }
+
+        #a1 {
+            /* 去除下划线 */
+            text-decoration: none;
+        }
+
+        #d1 {
+            /* 设置顶线 */
+            text-decoration: overline;
+        }
+
+        #d2 {
+            /* 设置下划线 */
+            text-decoration: underline;
+        }
+
+        #d3 {
+            /* 设置删除线 */
+            text-decoration: line-through;
+        }
+
+        #d4 {
+            /* px:像素 em:字符宽度倍数 */
+            text-indent: 2em;
+        }
+
+        #p1 {
+            width: 300px;
+            white-space: normal;
+        }
+
+        #p2 {
+            width: 300px;
+            white-space: nowrap;
+        }
+
+        #p3 {
+            /* 保留原来的格式 */
+            white-space: pre;
+        }
+
+        #p4 {
+            width: 500px;
+            background-color: green;
+            word-break: normal;
+        }
+
+        #p5 {
+            width: 500px;
+            background-color: green;
+
+            /* 允许单词内换行 */
+            word-break: break-all;
+        }
+
+        #p6 {
+            width: 500px;
+            background-color: green;
+
+            /* 只在半角空格和连字符处换行 */
+            word-break: keep-all;
+        }
+    </style>
+</head>
+<body>
+<a id="a1" href="http://www.baidu.com">百度一下</a>
+<div id="d1">顶线</div>
+<div id="d2">下划线</div>
+<div id="d3">删除线</div>
+<div id="d4">文本段落首行缩进。<br>只能用于块标签</div>
+<hr>
+<p id="p1">6月23日14时许，江苏盐城市阜宁县、射阳县部分地区突发龙卷风冰雹严重灾害，多个乡镇受灾，造成大量民房、厂房、学校教室倒塌，部分道路交通受阻。截至23日20时，已造成78人死亡、约500人受伤。</p>
+<hr>
+<p id="p2">6月23日14时许，江苏盐城市阜宁县、射阳县部分地区突发龙卷风冰雹严重灾害，多个乡镇受灾，造成大量民房、厂房、学校教室倒塌，部分道路交通受阻。截至23日20时，已造成78人死亡、约500人受伤。</p>
+<hr>
+<p id="p3">
+    for (int i = 0; i < 100; i++) {
+        System.out.println(i);
+    }
+</p>
+<hr>
+<p id="p4">
+    Android is an open source software stack for a wide range of mobile devices and a corresponding open source project
+    led by Google. This site offers the information and source code you need to create custom variants of the Android
+    stack, port devices and accessories to the Android platform, and ensure your devices meet compatibility
+    requirements.
+</p>
+<p id="p5">
+    Android is an open source software stack for a wide range of mobile devices and a corresponding open source project
+    led by Google. This site offers the information and source code you need to create custom variants of the Android
+    stack, port devices and accessories to the Android platform, and ensure your devices meet compatibility
+    requirements.
+</p>
+<p id="p6">
+    Android is an open source software stack for a wide range of mobile devices and a corresponding open source project
+    led by Google. This site offers the information and source code you need to create custom variants of the Android
+    stack, port devices and accessories to the Android platform, and ensure your devices meet compatibility
+    requirements.
+</p>
+</body>
+</html>

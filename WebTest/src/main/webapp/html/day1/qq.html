@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div>
+    <form action="#" method="get">
+        <table>
+            <tr>
+                <td align="right">帐号:</td>
+                <td><input type="text" name="username"></td>
+            </tr>
+            <tr>
+                <td align="right">密码:</td>
+                <td><input type="password" name="password"></td>
+            </tr>
+            <tr>
+                <td align="right">确认密码:</td>
+                <td><input type="password"></td>
+            </tr>
+            <tr>
+                <td align="right">性别:</td>
+                <td>
+                    <!-- 点击label，radio自动被选中 -->
+                    <!-- 方式1: <label for="man"> -->
+                    <label for="man">男</label><input type="radio" id="man" name="gender">
+                    <!-- 方式2 -->
+                    <label>女<input type="radio" name="gender"></label>
+                </td>
+            </tr>
+            <tr>
+                <td align="right">生日:</td>
+                <td>
+                    <select>
+                        <option value="0">公历</option>
+                        <option value="1">农历</option>
+                    </select>
+                    <select>
+                        <option value="-1">年</option>
+                        <option value="1990">1990年</option>
+                        <option value="1991">1991年</option>
+                        <option value="1992">1992年</option>
+                    </select>
+                    <select>
+                        <option value="-1">月</option>
+                        <option value="1">1月</option>
+                        <option value="2">2月</option>
+                        <option value="3">3月</option>
+                    </select>
+                    <select>
+                        <option value="-1">日</option>
+                        <option value="1">1日</option>
+                        <option value="2">2日</option>
+                        <option value="3">3日</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td align="right">手机号码:</td>
+                <td><input type="text"></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td><input type="checkbox" checked="checked">我同意</td>
+            </tr>
+            <tr>
+                <td></td>
+                <td><input type="submit" value="注册"></td>
+            </tr>
+        </table>
+    </form>
+</div>
+</body>
+</html>

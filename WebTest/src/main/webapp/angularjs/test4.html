@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="app">
+<head>
+    <meta charset="UTF-8">
+    <title>数据绑定延时加载,防止出现{{}}</title>
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap-theme.min.css">
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="js/angular.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <script src="http://cdn.bootcss.com/angular-ui-router/0.3.1/angular-ui-router.min.js"></script>
+    <style type="text/css">
+        .container {
+            padding: 5px;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div ng-controller="ctrl">
+        <button type="button" ng-click="btn()">Button</button>
+        <h1 ng-cloak>{{text}}</h1>
+    </div>
+</div>
+</body>
+<script type="text/javascript">
+    var app = angular.module("app", []);
+    app.controller("ctrl", function ($scope, $http) {
+        $scope.btn = function () {
+            $http.post("http://localhost:8080/test", {}).success(function (resp) {
+                console.log(resp);
+                $scope.text = resp.result;
+            });
+        };
+    });
+</script>
+</html>

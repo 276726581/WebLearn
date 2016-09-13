@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="app">
+<head>
+    <meta charset="UTF-8">
+    <title>指令1-restrict-匹配模式1</title>
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap-theme.min.css">
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="js/angular.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <style type="text/css">
+        .container {
+            padding: 5px;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>指令1-restrict-匹配模式1 (推荐使用 元素和属性)</h1>
+    <div>
+        A(默认)(属性):&nbsp;
+        <span text></span>
+    </div>
+    <div>
+        E(元素):&nbsp;
+        <text></text>
+    </div>
+    <div>
+        C(类名):&nbsp;
+        <span class="text"></span>
+    </div>
+    <div>
+        M(注解):&nbsp;
+        <!-- directive:text -->
+    </div>
+</div>
+</body>
+<script type="text/javascript">
+    //    A(默认):属性
+    //    E:元素
+    //    C:类名
+    //    M:注解
+    var app = angular.module("app", []);
+    app.directive("text", function () {
+        return {
+            restrict: "AEMC",
+            template: "<span>Hello World</span>",
+            replace: true
+        }
+    });
+</script>
+</html>

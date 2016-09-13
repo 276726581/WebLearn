@@ -1,0 +1,293 @@
+﻿JSP内置对象
+作用域：
+		page：当前JSP页面
+		request：一个JSP也页面请求别一个JSP页面之间
+		session：当前会话中有效(浏览器发出第一个HTTP请求即可认为会话开始,到浏览器关闭)
+		applicaton：从服务器启动到服务器停止(谨慎使用，可能会造成服务器负载越来越重)
+
+request例子:
+page1：request.setAttribute("data",test);
+page2: request.getAttribute("data");
+
+
+<jsp:useBean id="" class="" scope=""/>
+<jsp:setProperty name="" property=""/>
+
+
+备注：
+property="*"表示自动匹配表单的元素
+<jsp:setProperty name="account" property="*"/>
+
+表示自动匹配表单的指定元素
+<jsp:setProperty name="account" property="username"/>
+
+********************************************************************
+
+JSTL
+分类：
+		核心标签
+		格式化标签
+		SQL标签
+		XML标签
+
+EL表达式(Expression Language)
+		与JSTL配合使用，使得JSP页面更加直观
+例：
+		JSP:<%=session.getValue("name")%>
+		EL:<c:out value="${sessionScope.name}"/>
+
+EL变量与JSP内置对象的映射
+Page            PageScope
+Request         RequestScope
+Session         SessionScope
+Application     ApplicationScope
+
+
+EL变量查找顺序: pageScope —> requestScope —> sessionScope —> applicationScope
+                (默认从pageScope开始)
+如果四个当中都没有找到，EL会返回空字符串""
+
+
+EL自动类型转换
+例：${param.count + 20}
+String text=request.getParameter("count");
+int count=Integer.parseInt(text);
+count=count+20;
+
+
+EL使用：
+		${user.sex} 或者 ${user["sex"]}
+
+
+特殊情况：
+		1.包含特殊字符
+		${user.first-name}  -->  ${user["first-name"]}
+
+		2.通过变量动态取值
+		${user[param]}    param为一个变量名
+
+
+EL隐式对象:
+pageContext(ServletContext)
+pageScope(map类型)
+requestScope(map类型)
+sessionScope(map类型)
+applicationScope(map类型)
+param(map类型)：ServletReqest.getParameter()
+Header(map类型)：ServletRequest.getHeader()
+cookie(map类型): ServletRequest.getCookie()
+initParam(map类型)：ServletContext.getInitParameter()
+
+
+EL运算符
+算术运算符：+   -   *   /   %
+关系运算符：==(eq)   !=(ne)   >(gt)   <(lt)   >=(ge)   <=(le)
+逻辑运算符：&&(and)  ||(or)  !(not)
+验证运算符：empty(为null返回true，不为null返回false)
+
+**************************** EL标签 ************************************
+导入:
+<%@ tablib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
+表达式标签分类：
+		表达式控制标签
+		表达式流程控制标签
+		URL操作标签
+
+表达式控制标签：
+out标签:
+<c:out value="${data}" default="error"/>  当变量不存在时，通过default属性输出默认值
+<c:out value="&ltout&gt" escapeXml="false"/>   escapeXml="false"特殊字符转意，输出 "<out>" 
+
+
+set标签:
+方式1
+<c:set value="hello world" var="text" scope="request"/> 等同于request.setAttribute("text","hello world");
+
+方式2
+<c:set var="age" scope="request">11</c:set>
+
+方式3(JavaBean赋值)
+<jsp:useBean id="person" class="com.test.Person"/>
+<c:set target="person" property"name" value=""/>
+<c:out value="${person.name}"/>
+
+
+remove标签：
+<c:set value="data" var="test"/>
+<c:out value="${test}"/>
+<c:remove var="test"/>
+<c:out value="${test}"/>
+
+
+catch标签：
+<c:catch var="error">
+	<c:set target="test" property="date" value="2016"/>
+</c:catch>
+
+
+表达式流程控制标签：
+if标签：
+<c:if test="${age >= 18}" var="result">
+	<c:out value="是否成年"/>
+	<c:out value="${result}"/>
+</c:if>
+
+
+choose标签：
+<c:choose>
+	<c:when test="${score >= 90}">
+		<c:out value="优秀"/>
+	</c:when>
+	<c:when test="${score >= 80 && score < 90}">
+		<c:out value="良好"/>
+	</c:when>
+	<c:when test="${score >= 70 && score < 80}">
+		<c:out value="中等"/>
+	</c:when>
+	<c:when test="${score >= 60 && score < 70}">
+		<c:out value="及格"/>
+	</c:when>
+	<c:otherwise>
+		<c:out value="不及格"/>
+	</c:otherwise>
+</c:choose>
+
+
+forEach标签：
+--全部遍历
+<c:forEach items="${list}" var="i">
+	<c:out value="${i}"/><br>
+</c:forEach>
+
+--部分遍历
+<c:forEach items="${list}" var="i" begin="0" end="5">
+	<c:out value="${i}"/><br>
+</c:forEach>
+输出6个,等同于for(int i=0;i<=5;i++)
+
+--部分遍历并指定步长 (step间隔个数)
+<c:forEach items="${list}" var="i" begin="0" end="6" step="1">
+	<c:out value="${i}"/><br>
+</c:forEach>
+
+--全部遍历并显示元素状态
+<c:forEach items="${list}" var="i" varStatus="status">
+	<c:out value="集合中第几个元素: ${status.count}">
+	<c:out value="集合中的下标: ${status.index}"/>
+	<c:out value="是否是第一个元素: ${status.first}"/>
+	<c:out value="是否是最后一个元素: ${status.last}"/>
+	<c:out value="${i}"/><br>
+</c:forEach>
+
+
+forTokens标签(相当于java中String.split)：
+delims为分隔符
+<c:forTokens items="1,2,3,4,5" delims="," var="num">
+	<c:out value="${num}"/>
+<c:forTokens/>
+
+
+URL操作标签
+比较：
+<jsp:include>只能包含同一个web应用中的文件
+<c:import>可以包含其他web应用中的文件，甚至是网络上的资源
+
+url: 被导入资源的URL路径
+context: 相同服务器下其他web工程，必须以"/"开头
+var: 以String类型存入被包含文件的内容
+Scope: 变量的作用范围
+charEncoding: 被导入文件的编码格式
+varReader以Reader类型存储被包含的文件内容
+<c:import url="" context="" var="" Scope="" charEncoding="" varReader="">
+</c:import>
+
+例：
+--导入网络上的文件绝对路径，网络上的文件可能存在异常，可以使用catch标签捕获
+<c:catch var="error">
+	<c:import url="http://www.baidu.com"/>
+</c:catch>
+<c:out =value="${error}"/>
+
+
+redirect标签：
+url: 重定向的url
+context: 相同服务器下其他web工程，必须以"/"开头
+<c:redirect url="#">
+	<c:param name="username" value="admin"/>
+	<c:param name="password" value"123456"/>
+</c:redirect>
+
+
+url标签：
+value: url路径
+var: 将url路径存储在变量中
+scope: var变量的作用范围
+
+
+***************** fmt标签库 *************************
+<fmt:formatNumber 
+value="expression" (参数必须)
+type="type" 指定类型(number|currency|percent)
+pattern="expression"
+currencyCode="expression"
+currencySymbol="expression" 货币符号
+maxIntegerDigits="expression"
+minIntegerDigits="expression"
+maxFractionDigits="expression"
+minFractionDigits="expression"
+groupingUsed="expression"
+var="name" 存储格式化后的数字
+scope="scope" var变量作用域/>
+
+<fmt:parseNumber
+value="expression" 需要格式化的数字
+type="type" 指定类型(number|currency|percent)
+pattern="expression" 指定格式化的样式
+parseLocale="expression" 指定转换的地区格式
+integerOnly="expression" 是否只显示整数部分，默认为false
+var="name" 存储格式化后的数字
+scope="scope" var变量的作用域/>
+
+<fmt:forDate
+value="expression" 需要格式化的日期时间
+timeZone="expression" 指定时区
+type="type" 指定类型(date|time|both)
+dateStyle="style" (default,short,medium|long|full)
+timeStyle="style" (default,short,medium|long|full)
+var="name" 存储格式化后的日期时间
+pattern="expression" 指定格式化的样式，参考SimpleDateFormat
+scope="scope" var变量的作用域/>
+
+<fmt:parseDate
+value="expression" 需要格式化的日期时间
+type="type" 指定类型(date|time|both)
+dateStyle="style" (default,short,medium|long|full)
+timeStyle="style" (default,short,medium|long|full)
+pattern="expression" 指定格式化的样式
+var="name" 存储格式化后的日期时间
+timeZone="expression" 指定时区
+parseLocale="expression" 指定转换的地区格式
+scope="scope" var变量的作用域/>
+
+
+********************* JSTL函数 *************************
+导入：
+<%@ tablib prefix="fn" uri="http://java.sun.com/jsp/jstl/funtions"%>
+
+fn:length 获取集合的长度，因为Collection.size()方法不是标准的JavaBean方法(没有get,set)
+fn:contains("Hello World","Hello") 是否包含字符串
+fn:containsIgnoreCase("Hello World","hello") 是否包含字符串，忽略大小写
+fn:startWith
+fn:endWith
+fn:escapeXml("<table>table</table>") 将所有特殊字符转化为字符成可显示的字符
+fn:indexOf
+fn:join 连接字符串
+fn:replace
+fn:split
+fn:substring("ABC","1","2") start=1,end=2
+fn:substringBefore("ABCD","BC") 截取字符串到指定字符停止
+fn:toLowerCase
+fn:toUpperCase
+fn:trim
+

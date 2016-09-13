@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="app">
+<head>
+    <meta charset="UTF-8">
+    <title>路由</title>
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap-theme.min.css">
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="js/angular.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <script src="http://cdn.bootcss.com/angular-ui-router/0.3.1/angular-ui-router.min.js"></script>
+    <style type="text/css">
+        .container {
+            padding: 5px;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div ui-view="">
+
+    </div>
+</div>
+</body>
+<script type="text/javascript">
+    var app = angular.module("app", ["ui.router"]);
+    app.config(function ($stateProvider, $urlRouterProvider) {
+        $urlRouterProvider.otherwise("/index");
+        $stateProvider
+                .state("index", {
+                    url: "/index",
+                    views: {
+                        "": {
+                            templateUrl: "template/index.html"
+                        },
+                        "tab@index": {
+                            templateUrl: "template/tab.html"
+                        }
+                    }
+                })
+                .state("index.page1", {
+                    url: "/page1",
+                    views: {
+                        "main@index": {
+                            templateUrl: "template/page1.html",
+                            controller: function ($scope) {
+                            }
+                        }
+                    }
+                })
+                .state("index.page2", {
+                    url: "/page2",
+                    views: {
+                        "main@index": {
+                            templateUrl: "template/page2.html"
+                        }
+                    }
+                })
+                .state("index.page3", {
+                    url: "/page3",
+                    views: {
+                        "main@index": {
+                            templateUrl: "template/page3.html"
+                        }
+                    }
+                })
+                .state("index.page1.item1", {
+                    url: "/item1",
+                    views: {
+                        "right@index.page1": {
+                            templateUrl: "template/item.html",
+                            controller: function ($scope) {
+                                $scope.index = 1;
+                            }
+                        }
+                    }
+                })
+                .state("index.page1.item2", {
+                    url: "/item2",
+                    views: {
+                        "right@index.page1": {
+                            templateUrl: "template/item.html",
+                            controller: function ($scope) {
+                                $scope.index = 2;
+                            }
+                        }
+                    }
+                })
+                .state("index.page1.item3", {
+                    url: "/item3",
+                    views: {
+                        "right@index.page1": {
+                            templateUrl: "template/item.html",
+                            controller: function ($scope) {
+                                $scope.index = 3;
+                            }
+                        }
+                    }
+                });
+    });
+</script>
+</html>
