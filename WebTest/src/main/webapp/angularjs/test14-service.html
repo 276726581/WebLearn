@@ -25,10 +25,54 @@
         <li>自定义Service要写在所有$开头的变量之后，angular先注入自己的，再注入自定义的</li>
         <li>内置Service以$开头，自定义Service应该避免以$开头</li>
     </ul>
+    <p>
+        Service、Provider、Factory本质都是Provider
+        Provider模式是"策略模式"+"抽象工厂模式"的混合体
+    </p>
+    <div ng-controller="ctrl">
+        <input type="text" ng-model="user.username">
+        <input type="password" ng-model="user.password">
+        <button type="button" ng-click="login()">Login</button>
+        <div ng-show="status">login success</div>
+    </div>
 </div>
 </div>
 </body>
 <script type="text/javascript">
     var app = angular.module("app", []);
+    app.factory("loginService", function ($http) {
+        return {
+            login: function (username, password) {
+                console.log(username + " : " + password);
+                return $http({
+                    method: "post",
+                    url: "json/test14.json",
+                    data: {
+                        username: username,
+                        password: password
+                    }
+                });
+            }
+        }
+    });
+    app.controller("ctrl", function ($scope, loginService) {
+        $scope.user = {};
+        $scope.status = false;
+        $scope.login = function () {
+            loginService.login($scope.user.username, $scope.user.password)
+                    .success(function (data, status) {
+                        console.log(data);
+                        console.log(status);
+
+                        $scope.status = true;
+                    })
+                    .error(function (data, status) {
+                        console.log(data);
+                        console.log(status);
+
+                        $scope.status = false;
+                    });
+        }
+    });
 </script>
 </html>
