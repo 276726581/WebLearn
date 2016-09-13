@@ -58,14 +58,14 @@
     app.directive("loading", function () {
         return {
             restrict: "E",
-            link: function ($scope, $element, $attr) {
-                $element.bind("click", function () {
-                    //$scope.loading();
+            link: function (scope, element, attr) {
+                element.bind("click", function () {
+                    //scope.loading();
                     //或
-                    //$scope.$apply("loading()");
+                    //scope.$apply("loading()");
 
                     //注意: loading execFunc=""元素中是驼峰命名,在javascript中全是小写
-                    $scope.$apply($attr.execfunc);
+                    scope.$apply(attr.execfunc);
                 });
             }
         }

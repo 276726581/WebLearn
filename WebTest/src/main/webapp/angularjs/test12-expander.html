@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="app">
+<head>
+    <meta charset="UTF-8">
+    <title>指令6-自定义UI</title>
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap-theme.min.css">
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="js/angularjs/angular.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <style type="text/css">
+        .container {
+            padding: 5px;
+            width: 100%;
+        }
+
+        .panel {
+            margin-bottom: 0px;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>指令6-自定义UI</h1>
+    <div ng-controller="ctrl">
+        <div class="row">
+            <div class="col-md-4">
+                <accordion>
+                    <expander title="{{item.title}}" ng-repeat="item in list">
+                        <span ng-cloak>{{item.content}}</span>
+                    </expander>
+                </accordion>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+<script type="text/javascript">
+    var app = angular.module("app", []);
+    app.controller("ctrl", function ($scope) {
+        $scope.list = [
+            {title: "title1", content: "content1"},
+            {title: "title2", content: "content2"},
+            {title: "title3", content: "content3"},
+            {title: "title4", content: "content4"},
+            {title: "title5", content: "content5"},
+        ];
+    });
+    app.directive("accordion", function () {
+        return {
+            restrict: "AE",
+            replace: true,
+            transclude: true,
+            template: "<div ng-transclude></div>",
+            controller: function () {
+                var expanders = [];
+                this.open = function (selected) {
+                    angular.forEach(expanders, function (expander) {
+                        if (selected != expander) {
+                            expander.show = false;
+                        }
+                    });
+                };
+                this.addExpander = function (expander) {
+                    expanders.push(expander);
+                };
+            }
+        };
+    });
+    app.directive("expander", function () {
+        return {
+            require: "^accordion",
+            restrict: "AE",
+            replace: true,
+            transclude: true,
+            template: "<div class='panel panel-primary'>" +
+            "<div class='panel-heading' ng-click='toggle()'>" +
+            "<div class='panel-title'>{{title}}</div>" +
+            "</div>" +
+            "<div class='panel-body' ng-show='show' ng-transclude></div>" +
+            "</div>",
+            scope: {
+                title: "@"
+            },
+            link: function (scope, element, attr, accordionController) {
+                scope.show = false;
+                accordionController.addExpander(scope);
+                scope.toggle = function () {
+                    scope.show = !scope.show;
+                    accordionController.open(scope);
+                };
+            }
+        };
+    });
+</script>
+</html>

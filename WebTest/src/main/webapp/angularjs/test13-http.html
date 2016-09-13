@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="app">
+<head>
+    <meta charset="UTF-8">
+    <title>服务1-Http</title>
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap-theme.min.css">
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="js/angularjs/angular.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <style type="text/css">
+        .container {
+            padding: 5px;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div ng-controller="ctrl">
+        <div ng-cloak="">status: {{data.status}}</div>
+        <div ng-cloak="">username: {{data.username}}</div>
+        <div ng-cloak="">password: {{data.password}}</div>
+        <div ng-cloak="">token: {{data.token}}</div>
+    </div>
+</div>
+</body>
+<script type="text/javascript">
+    var app = angular.module("app", []);
+    app.controller("ctrl", function ($scope, $http) {
+        $scope.data = {};
+        $http({
+            method: "post",
+            url: "json/test13.json",
+            data: {id: "0"}
+        }).success(function (data, status, headers, config) {
+            console.log(data);
+            console.log(status);
+            console.log(headers);
+            console.log(config);
+            $scope.data = data;
+        }).error(function (data, status, headers, config) {
+            console.log(data);
+            console.log(status);
+            console.log(headers);
+            console.log(config);
+        });
+    });
+</script>
+</html>

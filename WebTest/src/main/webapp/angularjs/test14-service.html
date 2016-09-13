@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="app">
+<head>
+    <meta charset="UTF-8">
+    <title>服务2-自定义Service</title>
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap-theme.min.css">
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="js/angularjs/angular.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <style type="text/css">
+        .container {
+            padding: 5px;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>服务2-自定义Service</h1>
+    <ul>
+        <li>Service都是单例的</li>
+        <li>Service由$injector负责实例化</li>
+        <li>Service在整个应用的生命周期中存在，可以用来共享数据</li>
+        <li>自定义Service要写在所有$开头的变量之后，angular先注入自己的，再注入自定义的</li>
+        <li>内置Service以$开头，自定义Service应该避免以$开头</li>
+    </ul>
+</div>
+</div>
+</body>
+<script type="text/javascript">
+    var app = angular.module("app", []);
+</script>
+</html>

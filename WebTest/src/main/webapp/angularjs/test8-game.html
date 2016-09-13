@@ -59,10 +59,10 @@
                     $scope.abilities.push("light");
                 };
             },
-            link: function ($scope, $element, $attr) {
-                $element.addClass("btn");
-                $element.bind("click", function () {
-                    console.log($scope.abilities);
+            link: function (scope, element, attr) {
+                element.addClass("btn");
+                element.bind("click", function () {
+                    console.log(scope.abilities);
                 });
             }
         }
@@ -70,24 +70,24 @@
     app.directive("strength", function () {
         return {
             require: "^superman",
-            link: function ($scope, $element, $attr, $controller) {
-                $controller.addStrength();
+            link: function (scope, element, attr, controller) {
+                controller.addStrength();
             }
         };
     });
     app.directive("speed", function () {
         return {
             require: "^superman",
-            link: function ($scope, $element, $attr, $controller) {
-                $controller.addSpeed();
+            link: function (scope, element, attr, controller) {
+                controller.addSpeed();
             }
         };
     });
     app.directive("light", function () {
         return {
             require: "^superman",
-            link: function ($scope, $element, $attr, $controller) {
-                $controller.addLight();
+            link: function (scope, element, attr, controller) {
+                controller.addLight();
             }
         };
     });
