@@ -1906,7 +1906,7 @@ function assertArgFn(arg, name, acceptArrayAnnotation) {
 
 /**
  * throw error if the name given is hasOwnProperty
- * @param  {String} name    the name to com.timogroup.com.timogroup.tomcat.tomcat.test
+ * @param  {String} name    the name to test
  * @param  {String} context the context in which the name is used, such as module or directive
  */
 function assertNotHasOwnProperty(name, context) {
@@ -6230,7 +6230,7 @@ function Browser(window, document, $log, $sniffer) {
    * @description
    * Executes a fn asynchronously via `setTimeout(fn, delay)`.
    *
-   * Unlike when calling `setTimeout` directly, in com.timogroup.com.timogroup.tomcat.tomcat.test this function is mocked and instead of using
+   * Unlike when calling `setTimeout` directly, in test this function is mocked and instead of using
    * `setTimeout` in tests, the fns are queued in an array, which can be programmatically flushed
    * via `$browser.defer.flush()`.
    *
@@ -6391,7 +6391,7 @@ function $CacheFactoryProvider() {
        *    }]);
        * ```
        *
-       * Example com.timogroup.com.timogroup.tomcat.tomcat.test:
+       * Example test:
        *
        * ```js
        *  it('should behave like a cache', inject(function(superCache) {
@@ -8765,7 +8765,7 @@ function $CompileProvider($provide, $$sanitizeUriProvider) {
       } catch (e) {
         // turns out that under some circumstances IE9 throws errors when one attempts to read
         // comment's node value.
-        // Just ignore it and continue. (Can't seem to reproduce in com.timogroup.com.timogroup.tomcat.tomcat.test case.)
+        // Just ignore it and continue. (Can't seem to reproduce in test case.)
       }
     }
 
@@ -19452,7 +19452,7 @@ function $$TestabilityProvider() {
      *
      * @description
      * The private $$testability service provides a collection of methods for use when debugging
-     * or by automated com.timogroup.com.timogroup.tomcat.tomcat.test and debugging tools.
+     * or by automated test and debugging tools.
      */
     var testability = {};
 
@@ -25783,7 +25783,7 @@ var ngControllerDirective = [function() {
             webdriver = require('protractor/node_modules/selenium-webdriver');
           });
 
-          com.timogroup.tomcat.test
+          // For now, we only test on Chrome,
           // as Safari does not load the page with Protractor's injected scripts,
           // and Firefox webdriver always disables content security policy (#6358)
           if (browser.params.browser !== 'chrome') {
