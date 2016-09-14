@@ -18,11 +18,10 @@
 <body>
 <div class="container">
     <h1>服务3-自定义Filter</h1>
-    <a href="http://www.baidu.com" target="_blank">Baidu</a>
     <div ng-controller="ctrl">
         <ul>
             <li ng-cloak ng-repeat="item in data">
-                {{item | textFilter}}
+                {{item | currencyFilter}}
             </li>
         </ul>
     </div>
@@ -31,12 +30,12 @@
 <script type="text/javascript">
     var app = angular.module("app", []);
     app.controller("ctrl", function ($scope) {
-        $scope.data = [1, 2, 3, 4, 5];
+        $scope.data = [1.2, 2.2, 3.3, 4.4, 5.5];
     });
-    app.filter("textFilter", function () {
+    app.filter("currencyFilter", function () {
         return function (item) {
             console.log(item);
-            return "Hello World " + item;
+            return "￥" + item;
         }
     });
 </script>
