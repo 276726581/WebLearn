@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="app">
+<head>
+    <meta charset="UTF-8">
+    <title>数据绑定-数组数据重复问题</title>
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap-theme.min.css">
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="js/angularjs/angular.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <style type="text/css">
+        .container {
+            padding: 5px;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+<div>
+    <div class="container">
+        <div ng-controller="ctrl">
+            <div>
+                <input type="text" ng-model="text">
+                <button type="button" ng-click="add()">Add</button>
+            </div>
+            <div>
+                <ul>
+                    <li ng-repeat="item in data track by $index">
+                        {{item}}
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+<script type="text/javascript">
+    var app = angular.module('app', []);
+    app.controller("ctrl", function ($scope) {
+        $scope.data = [];
+        $scope.add = function () {
+            $scope.data.push($scope.text);
+            $scope.text = "";
+        }
+    });
+</script>
+</html>
