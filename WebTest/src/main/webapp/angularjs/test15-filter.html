@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="app">
+<head>
+    <meta charset="UTF-8">
+    <title>服务3-Filter</title>
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap-theme.min.css">
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="js/angularjs/angular.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <style type="text/css">
+        .container {
+            padding: 5px;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>服务3-Filter</h1>
+    <p>
+        $filter是用来进行数据格式化的专用服务<br>
+        AngularJs内置了9个filter:<br>
+        currency(货币),date,json,limitTo,number,orderBy,lowercase,uppercase<br>
+        filter可以嵌套使用(用管道符号|分割)<br>
+        filter是可以传递参数的<br>
+        用户可以自定义filter<br>
+    </p>
+    <div>
+        <h2>时间转换</h2>
+        <div>
+            <div>{{1304375948024 | date}}</div>
+            <div>{{1304375948024 | date:"yyyy-MM-dd"}}</div>
+            <div>{{1304375948024 | date:"yyyy-MM-dd HH:mm:ss"}}</div>
+        </div>
+    </div>
+</div>
+</body>
+<script type="text/javascript">
+    var app = angular.module("app", []);
+</script>
+</html>

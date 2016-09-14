@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="app">
+<head>
+    <meta charset="UTF-8">
+    <title>服务3-自定义Filter</title>
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap-theme.min.css">
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="js/angularjs/angular.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <style type="text/css">
+        .container {
+            padding: 5px;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>服务3-自定义Filter</h1>
+    <a href="http://www.baidu.com" target="_blank">Baidu</a>
+    <div ng-controller="ctrl">
+        <ul>
+            <li ng-cloak ng-repeat="item in data">
+                {{item | textFilter}}
+            </li>
+        </ul>
+    </div>
+</div>
+</body>
+<script type="text/javascript">
+    var app = angular.module("app", []);
+    app.controller("ctrl", function ($scope) {
+        $scope.data = [1, 2, 3, 4, 5];
+    });
+    app.filter("textFilter", function () {
+        return function (item) {
+            console.log(item);
+            return "Hello World " + item;
+        }
+    });
+</script>
+</html>
